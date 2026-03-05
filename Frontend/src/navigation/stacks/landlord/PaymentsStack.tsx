@@ -16,17 +16,19 @@ export default function PaymentsStack() {
       <Stack.Screen
         name="PaymentsDashboard"
         component={PaymentsDashboard}
-        options={{ title: "Payments" }}
+        options={{ headerShown: false }}
       />
 
       <Stack.Screen
         name="PaymentDetail"
         component={PaymentDetailScreen}
+        options={{ headerShown: false }}
       />
 
       <Stack.Screen
         name="GenerateReceipt"
         component={GenerateReceiptScreen}
+        options={{ headerShown: false }}
       />
 
     </Stack.Navigator>

@@ -16,17 +16,19 @@ export default function TenantsStack() {
       <Stack.Screen
         name="TenantsList"
         component={TenantsListScreen}
-        options={{ title: "Tenants" }}
+        options={{ headerShown: false }}
       />
 
       <Stack.Screen
         name="TenantDetail"
         component={TenantDetailScreen}
+        options={{ headerShown: false }}
       />
 
       <Stack.Screen
         name="AssignTenant"
         component={AssignTenantScreen}
+        options={{ headerShown: false }}
       />
 
     </Stack.Navigator>

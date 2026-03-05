@@ -21,37 +21,43 @@ export default function PropertiesStack() {
       <Stack.Screen
         name="PropertiesList"
         component={PropertiesListScreen}
-        options={{ title: "Properties" }}
+        options={{headerShown:false}}
       />
 
       <Stack.Screen
         name="PropertyDetail"
         component={PropertyDetailScreen}
+        options={{headerShown:false}}
       />
 
       <Stack.Screen
         name="AddProperty"
         component={AddPropertyScreen}
+        options={{headerShown:false}}
       />
 
       <Stack.Screen
         name="EditProperty"
         component={EditPropertyScreen}
+        options={{headerShown:false}}
       />
 
       <Stack.Screen
         name="UnitsList"
         component={UnitsListScreen}
+        options={{headerShown:false}}
       />
 
       <Stack.Screen
         name="AddUnit"
         component={AddUnitScreen}
+        options={{headerShown:false}}
       />
 
       <Stack.Screen
         name="UnitDetail"
         component={UnitDetailScreen}
+        options={{headerShown:false}}
       />
 
     </Stack.Navigator>

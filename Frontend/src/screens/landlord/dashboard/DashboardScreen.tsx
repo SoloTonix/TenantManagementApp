@@ -18,8 +18,8 @@ export default function DashboardScreen() {
             <Text style={styles.greeting}>Hello,</Text>
             <Text style={styles.name}>{user?.name}</Text>
           </View>
-          <TouchableOpacity style={styles.profileButton}>
-            <MaterialCommunityIcons name="account-circle" size={44} color={colors.textInverse} />
+          <TouchableOpacity style={styles.notification}>
+            <MaterialCommunityIcons name="bell" size={30} color={colors.primary} />
           </TouchableOpacity>
         </View>
       </View>
@@ -129,8 +129,10 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
 
-  profileButton: {
-    backgroundColor: colors.secondary, // slightly lighter blue
+  notification: {
+    backgroundColor: colors.backgroundLight, // slightly lighter blue
+    borderColor: colors.primary,
+    borderWidth: 1,
     borderRadius: 25,
     padding: 2,
   },
@@ -147,7 +149,7 @@ const styles = StyleSheet.create({
     width: "48%",
     backgroundColor: colors.primary,
     padding: 18,
-    borderRadius: 12,
+    borderRadius: 0,
     marginBottom: 15,
     borderWidth: 1,
     borderColor: colors.border,

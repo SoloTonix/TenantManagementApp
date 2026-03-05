@@ -21,6 +21,7 @@ export default function ProfileStack(){
       <Stack.Screen
         name="LandlordProfile"
         component={LandlordProfileScreen}
+        options={{headerShown:false}}
       />
 
     </Stack.Navigator>

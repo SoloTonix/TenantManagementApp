@@ -1,6 +1,6 @@
 // src/screens/landlord/properties/PropertiesListScreen.tsx
-import React from "react";
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import React, {useState} from "react";
+import { View, Text, TextInput, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../../constants/colors";
 
@@ -12,7 +12,7 @@ const properties = [
 ];
 
 export default function PropertiesListScreen({ navigation }: any) {
-
+  const [search, setSearch] = useState("");
   const renderProperty = ({ item }: any) => (
     <TouchableOpacity 
       style={styles.card} 
@@ -39,8 +39,23 @@ export default function PropertiesListScreen({ navigation }: any) {
           onPress={() => navigation.navigate('AddProperty')}
         >
           <MaterialCommunityIcons name="plus" size={20} color={colors.textInverse} />
-          <Text style={styles.addButtonText}>Add Property</Text>
+          {/*<Text style={styles.addButtonText}>Add</Text>*/}
         </TouchableOpacity>
+      </View>
+
+      {/* Search */}
+      <View style={styles.searchContainer}>
+        <MaterialCommunityIcons
+          name="magnify"
+          size={20}
+          color={colors.textSecondary}
+        />
+        <TextInput
+          placeholder="Search tenants..."
+          value={search}
+          onChangeText={setSearch}
+          style={styles.searchInput}
+        />
       </View>
 
       {/* Properties List */}
@@ -66,7 +81,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 25,
   },
 
   title: {
@@ -94,10 +109,27 @@ const styles = StyleSheet.create({
     marginLeft: 6,
   },
 
+  searchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: colors.backgroundLight,
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    marginBottom: 20,
+  },
+
+  searchInput: {
+    flex: 1,
+    paddingVertical: 10,
+    marginLeft: 8,
+    },
+
   card: {
     backgroundColor: colors.backgroundLight,
     padding: 16,
-    borderRadius: 12,
+    borderRadius: 0,
     borderWidth: 1,
     borderColor: colors.border,
     marginBottom: 15,
