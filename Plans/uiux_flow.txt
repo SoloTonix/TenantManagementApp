@@ -1,0 +1,640 @@
+Below is a **clear, production-level UI/UX flow** for **RentFlow** so you can build it in **React Native (Expo + TypeScript)** without confusion.
+I will structure it like a **real product design document** used by product teams.
+
+---
+
+# 📱 RentFlow Mobile App — Complete UI/UX Flow
+
+The app has **3 main experience layers**:
+
+1️⃣ Authentication Flow
+2️⃣ Landlord App Flow
+3️⃣ Tenant App Flow
+
+The **role determines the interface** after login.
+
+---
+
+# 1️⃣ Authentication Flow (Shared)
+
+### Screen 1 — Splash Screen
+
+Purpose: Branding + loading
+
+**UI**
+
+```
+[ RentFlow Logo ]
+
+Smart Property Management
+
+Loading...
+```
+
+Auto redirects → Onboarding
+
+---
+
+# 2️⃣ Onboarding Flow
+
+3 slides explaining the value.
+
+### Screen 2 — Onboarding 1
+
+```
+Manage Properties Easily
+Track tenants and rent in one place
+```
+
+Illustration: apartment building
+
+Button:
+
+```
+Next →
+```
+
+---
+
+### Screen 3 — Onboarding 2
+
+```
+Never Miss Rent Payments
+Automatic reminders and receipts
+```
+
+---
+
+### Screen 4 — Onboarding 3
+
+```
+Transparent Tenant Communication
+Maintenance requests and announcements
+```
+
+Button:
+
+```
+Get Started
+```
+
+---
+
+# 3️⃣ Role Selection Screen
+
+This determines the **entire UI structure**.
+
+### Screen 5 — Choose Account Type
+
+```
+Who are you?
+
+[ Landlord / Property Manager ]
+
+[ Tenant ]
+```
+
+Each option shows an icon.
+
+---
+
+# 4️⃣ Authentication Screens
+
+### Screen 6 — Sign Up
+
+Inputs:
+
+```
+Full Name
+Phone Number
+Email
+Password
+Confirm Password
+```
+
+Button:
+
+```
+Create Account
+```
+
+Below:
+
+```
+Already have account? Login
+```
+
+---
+
+### Screen 7 — Login
+
+Inputs:
+
+```
+Email / Phone
+Password
+```
+
+Buttons:
+
+```
+Login
+Forgot Password
+```
+
+---
+
+# After Login → Role Based App
+
+---
+
+# 🏠 LANDLORD EXPERIENCE
+
+Main navigation should be **Bottom Tabs**.
+
+```
+Home
+Properties
+Tenants
+Payments
+Profile
+```
+
+---
+
+# 1️⃣ Landlord Dashboard
+
+### Screen — Dashboard
+
+Shows quick insights.
+
+```
+Good evening Solomon 👋
+
+Properties: 4
+Units: 28
+Occupied: 22
+Vacant: 6
+
+Expected Rent
+₦3,200,000
+
+Collected
+₦2,450,000
+
+Overdue Tenants
+5
+```
+
+Charts:
+
+```
+Monthly Rent Collection Chart
+```
+
+Buttons:
+
+```
++ Add Property
+Send Announcement
+```
+
+---
+
+# 2️⃣ Property Management
+
+### Screen — Properties List
+
+```
+Your Properties
+
+Sunset Apartments
+12 Units
+
+Ocean View Estate
+6 Units
+
++ Add Property
+```
+
+---
+
+### Screen — Add Property
+
+Form:
+
+```
+Property Name
+Address
+Property Type
+Number of Units
+Description
+```
+
+Button:
+
+```
+Create Property
+```
+
+---
+
+# 3️⃣ Property Details
+
+### Screen — Property Detail
+
+```
+Sunset Apartments
+Address: Lekki Phase 1
+
+Units: 12
+Occupied: 9
+Vacant: 3
+```
+
+Tabs:
+
+```
+Units
+Tenants
+Payments
+Maintenance
+```
+
+---
+
+# 4️⃣ Unit Management
+
+### Screen — Units List
+
+```
+Flat 1A
+2 Bedroom
+Rent: ₦800,000
+Status: Occupied
+
+Flat 1B
+2 Bedroom
+Status: Vacant
+```
+
+Button:
+
+```
++ Add Unit
+```
+
+---
+
+### Screen — Add Unit
+
+Form:
+
+```
+Unit Number
+Unit Type
+Annual Rent
+Maintenance Fee
+Security Deposit
+Floor
+```
+
+---
+
+# 5️⃣ Tenant Assignment
+
+### Screen — Assign Tenant
+
+```
+Tenant Name
+Phone
+Email
+
+Lease Start Date
+Lease End Date
+```
+
+Button:
+
+```
+Assign Tenant
+```
+
+---
+
+# 6️⃣ Payments Section
+
+### Screen — Payment Dashboard
+
+```
+Expected This Month
+₦1,200,000
+
+Collected
+₦900,000
+
+Overdue
+₦300,000
+```
+
+List:
+
+```
+John Doe — Flat 2A
+Due: ₦800,000
+Status: Overdue
+```
+
+---
+
+### Screen — Payment Detail
+
+```
+Tenant: John Doe
+Unit: Flat 2A
+
+Rent: ₦800,000
+Maintenance: ₦50,000
+
+Status: Paid
+Date: Jan 5
+```
+
+Button:
+
+```
+Generate Receipt
+```
+
+---
+
+# 7️⃣ Maintenance Requests
+
+### Screen — Maintenance Tickets
+
+```
+Leaking pipe — Flat 1A
+Priority: High
+Status: Pending
+
+Broken window — Flat 3B
+Status: In Progress
+```
+
+---
+
+### Screen — Ticket Detail
+
+```
+Tenant Message
+Image
+Date
+
+Buttons:
+Mark In Progress
+Mark Completed
+```
+
+---
+
+# 8️⃣ Announcements
+
+### Screen — Create Announcement
+
+```
+Title
+Message
+Select Property
+```
+
+Button:
+
+```
+Send Announcement
+```
+
+---
+
+# 🏢 TENANT EXPERIENCE
+
+Tenant navigation is simpler.
+
+```
+Home
+Payments
+Maintenance
+Messages
+Profile
+```
+
+---
+
+# 1️⃣ Tenant Dashboard
+
+```
+Welcome John 👋
+
+Unit: Flat 2A
+Property: Sunset Apartments
+
+Next Rent Due
+Jan 5 2027
+
+Amount
+₦800,000
+```
+
+Button:
+
+```
+Pay Rent
+```
+
+---
+
+# 2️⃣ Payment History
+
+### Screen — Payments
+
+```
+Jan 2026 — Paid
+₦800,000
+
+Jan 2025 — Paid
+₦750,000
+```
+
+Button:
+
+```
+Download Receipt
+```
+
+---
+
+# 3️⃣ Maintenance Request
+
+### Screen — Submit Issue
+
+Form:
+
+```
+Title
+Description
+Upload Image
+Priority
+```
+
+Button:
+
+```
+Submit Request
+```
+
+---
+
+# 4️⃣ Messages / Announcements
+
+Tenant receives landlord messages.
+
+```
+Water maintenance tomorrow
+Generator schedule
+Community meeting
+```
+
+---
+
+# 5️⃣ Profile
+
+```
+Name
+Phone
+Email
+Apartment
+Lease Start
+Lease End
+```
+
+Buttons:
+
+```
+Update Profile
+Logout
+```
+
+---
+
+# 🔐 Security UX
+
+Important flows:
+
+### OTP Verification
+
+```
+Enter 6 digit code
+```
+
+### Reset Password
+
+```
+Email → OTP → New Password
+```
+
+---
+
+# 🎨 UI Style Guide
+
+To make it feel **premium**:
+
+### Colors
+
+Primary
+
+```
+#2563EB (Blue)
+```
+
+Secondary
+
+```
+#0F172A (Dark)
+```
+
+Accent
+
+```
+#22C55E (Green)
+```
+
+---
+
+### Typography
+
+```
+Header: Bold
+Body: Regular
+Buttons: Semi Bold
+```
+
+---
+
+# 📱 Recommended Navigation Architecture
+
+React Navigation Structure:
+
+```
+AuthStack
+   Login
+   Register
+   RoleSelect
+
+AppStack
+   LandlordTabs
+       Dashboard
+       Properties
+       Tenants
+       Payments
+       Profile
+
+   TenantTabs
+       Home
+       Payments
+       Maintenance
+       Messages
+       Profile
+```
+
+---
+
+# 🧠 UX Feature That Will Make This App Special
+
+Add **Smart Rent Reminder**:
+
+Tenant gets:
+
+```
+Push Notification
+SMS
+Email
+```
+
+Example:
+
+```
+Your rent for Flat 2A is due in 3 days.
+```
+
+This alone will make landlords love the app.
+
+---
+
+# 🚀 If you want, I can also show you:
+
+1️⃣ **Complete React Native Folder Structure (production-level)**
+2️⃣ **Database Schema (Django models)**
+3️⃣ **API endpoints for the backend**
+4️⃣ **Full UI screen list (50+ screens)**
+5️⃣ **How to turn this into a real startup in Nigeria**
+
+Just say **“Show the full system architecture.”**
