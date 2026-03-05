@@ -1,0 +1,128 @@
+rentflow-mobile
+│
+├── App.tsx
+├── app.json
+├── package.json
+├── tsconfig.json
+├── babel.config.js
+│
+├── assets
+│   ├── fonts
+│   ├── icons
+│   ├── images
+│   └── animations
+│
+└── src
+    ├── components
+    │   ├── common
+    │   │   ├── Button.tsx
+    │   │   ├── Input.tsx
+    │   │   ├── Card.tsx
+    │   │   ├── Loader.tsx
+    │   │   └── EmptyState.tsx
+    │   ├── property
+    │   │   ├── PropertyCard.tsx
+    │   │   ├── UnitCard.tsx
+    │   │   └── PropertyStats.tsx
+    │   ├── tenant
+    │   │   ├── TenantCard.tsx
+    │   │   └── TenantInfo.tsx
+    │   └── payments
+    │       ├── PaymentItem.tsx
+    │       └── PaymentSummary.tsx
+    │
+    ├── screens
+    │   ├── auth
+    │   │   ├── SplashScreen.tsx
+    │   │   ├── OnboardingScreen.tsx
+    │   │   ├── RoleSelectScreen.tsx
+    │   │   ├── LoginScreen.tsx
+    │   │   ├── RegisterScreen.tsx
+    │   │   ├── OtpVerificationScreen.tsx
+    │   │   └── ResetPasswordScreen.tsx
+    │   │
+    │   ├── landlord
+    │   │   ├── dashboard
+    │   │   │   └── DashboardScreen.tsx
+    │   │   ├── properties
+    │   │   │   ├── PropertiesListScreen.tsx
+    │   │   │   ├── PropertyDetailScreen.tsx
+    │   │   │   ├── AddPropertyScreen.tsx
+    │   │   │   └── EditPropertyScreen.tsx
+    │   │   ├── units
+    │   │   │   ├── UnitsListScreen.tsx
+    │   │   │   ├── AddUnitScreen.tsx
+    │   │   │   └── UnitDetailScreen.tsx
+    │   │   ├── tenants
+    │   │   │   ├── TenantsListScreen.tsx
+    │   │   │   ├── AssignTenantScreen.tsx
+    │   │   │   └── TenantDetailScreen.tsx
+    │   │   ├── payments
+    │   │   │   ├── PaymentsDashboard.tsx
+    │   │   │   ├── PaymentDetailScreen.tsx
+    │   │   │   └── GenerateReceiptScreen.tsx
+    │   │   ├── maintenance
+    │   │   │   ├── MaintenanceListScreen.tsx
+    │   │   │   └── MaintenanceDetailScreen.tsx
+    │   │   └── announcements
+    │   │       └── CreateAnnouncementScreen.tsx
+    │   │
+    │   └── tenant
+    │       ├── dashboard
+    │       │   └── TenantHomeScreen.tsx
+    │       ├── payments
+    │       │   ├── PaymentHistoryScreen.tsx
+    │       │   └── ReceiptScreen.tsx
+    │       ├── maintenance
+    │       │   ├── RequestMaintenanceScreen.tsx
+    │       │   └── MaintenanceStatusScreen.tsx
+    │       ├── messages
+    │       │   └── MessagesScreen.tsx
+    │       └── profile
+    │           └── TenantProfileScreen.tsx
+    │
+    ├── navigation
+    │   ├── RootNavigator.tsx
+    │   ├── AuthNavigator.tsx
+    │   ├── LandlordTabs.tsx
+    │   ├── TenantTabs.tsx
+    │   └── types.ts
+    │
+    ├── services
+    │   ├── api.ts
+    │   ├── authService.ts
+    │   ├── propertyService.ts
+    │   ├── tenantService.ts
+    │   ├── paymentService.ts
+    │   └── maintenanceService.ts
+    │
+    ├── store
+    │   ├── authStore.ts
+    │   ├── propertyStore.ts
+    │   ├── tenantStore.ts
+    │   └── paymentStore.ts
+    │
+    ├── context
+    │   └── AuthContext.tsx
+    │
+    ├── hooks
+    │   ├── useAuth.ts
+    │   ├── useProperties.ts
+    │   ├── useTenants.ts
+    │   └── usePayments.ts
+    │
+    ├── utils
+    │   ├── currency.ts
+    │   ├── date.ts
+    │   └── validators.ts
+    │
+    ├── constants
+    │   ├── colors.ts
+    │   ├── typography.ts
+    │   └── config.ts
+    │
+    └── types
+        ├── user.ts
+        ├── property.ts
+        ├── tenant.ts
+        └── payment.ts

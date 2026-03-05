@@ -1,0 +1,17 @@
+RootNavigator
+├── AuthStack
+│   ├── Login
+│   ├── Register
+│   └── RoleSelect
+├── LandlordTabs
+│   ├── Dashboard
+│   ├── Properties
+│   ├── Tenants
+│   ├── Payments
+│   └── Profile
+└── TenantTabs
+    ├── Home
+    ├── Payments
+    ├── Maintenance
+    ├── Messages
+    └── Profile
