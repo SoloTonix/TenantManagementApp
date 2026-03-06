@@ -1,97 +1,162 @@
-// src/screens/auth/OnboardingScreen.tsx
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import colors from '../../constants/colors';
-import { AuthStackParamList } from '../../navigation/types';
+import React, { useRef, useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions
+} from "react-native";
+import PagerView from "react-native-pager-view";
+import { Ionicons } from "@expo/vector-icons";
 
-type Props = NativeStackScreenProps<AuthStackParamList, 'Onboarding'>;
+const { width } = Dimensions.get("window");
 
 const slides = [
   {
-    key: '1',
-    title: 'Manage Properties Easily',
-    subtitle: 'Track tenants and rent in one place',
-    image: require('../../../assets/images/blue-house.jpg'),
+    icon: "business-outline",
+    title: "Manage Properties Easily",
+    description:
+      "Add and organize all your rental properties in one simple dashboard."
   },
   {
-    key: '2',
-    title: 'Never Miss Rent Payments',
-    subtitle: 'Automatic reminders and receipts',
-    image: require('../../../assets/images/blue-house.jpg'),
+    icon: "cash-outline",
+    title: "Track Rent Payments",
+    description:
+      "Monitor rent payments, overdue tenants, and payment history with ease."
   },
   {
-    key: '3',
-    title: 'Transparent Tenant Communication',
-    subtitle: 'Maintenance requests and announcements',
-    image: require('../../../assets/images/blue-house.jpg'),
-  },
+    icon: "people-outline",
+    title: "Stay Organized",
+    description:
+      "Keep tenant records, agreements, and contact details in one place."
+  }
 ];
 
-export default function OnboardingScreen({ navigation }: Props) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const OnboardingScreen = ({ navigation }: any) => {
+  const pagerRef = useRef<PagerView>(null);
+  const [page, setPage] = useState(0);
 
-  const nextSlide = () => {
-    if (currentIndex < slides.length - 1) {
-      setCurrentIndex(currentIndex + 1);
+  const handleNext = () => {
+    if (page < slides.length - 1) {
+      pagerRef.current?.setPage(page + 1);
     } else {
-      navigation.replace('RoleSelect');
+      navigation.replace("RoleSelect");
     }
   };
 
-  const { title, subtitle, image } = slides[currentIndex];
-
   return (
     <View style={styles.container}>
-      <Image source={image} style={styles.image} />
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.subtitle}>{subtitle}</Text>
+      <PagerView
+        style={{ flex: 1 }}
+        initialPage={0}
+        ref={pagerRef}
+        onPageSelected={(e) => setPage(e.nativeEvent.position)}
+      >
+        {slides.map((slide, index) => (
+          <View style={styles.slide} key={index}>
+            <Ionicons
+              name={slide.icon as any}
+              size={90}
+              color="#2563EB"
+              style={styles.icon}
+            />
 
-      <TouchableOpacity style={styles.button} onPress={nextSlide}>
+            <Text style={styles.title}>{slide.title}</Text>
+
+            <Text style={styles.description}>
+              {slide.description}
+            </Text>
+          </View>
+        ))}
+      </PagerView>
+
+      {/* Pagination */}
+      <View style={styles.pagination}>
+        {slides.map((_, i) => (
+          <View
+            key={i}
+            style={[
+              styles.dot,
+              page === i && styles.activeDot
+            ]}
+          />
+        ))}
+      </View>
+
+      {/* Button */}
+      <TouchableOpacity style={styles.button} onPress={handleNext}>
         <Text style={styles.buttonText}>
-          {currentIndex === slides.length -1 ? 'Get Started' : 'Next →'}
+          {page === slides.length - 1 ? "Get Started" : "Next"}
         </Text>
       </TouchableOpacity>
     </View>
   );
-}
+};
+
+export default OnboardingScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-    backgroundColor: colors.backgroundLight,
-    justifyContent:'center',
-    alignItems:'center',
-    paddingHorizontal:24,
+    flex: 1,
+    backgroundColor: "#FFFFFF",
+    paddingBottom: 40
   },
-  image: {
-    width:250,
-    height:250,
-    marginBottom:24,
-    resizeMode:'contain',
+
+  slide: {
+    width,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 40
   },
+
+  icon: {
+    marginBottom: 30
+  },
+
   title: {
-    fontSize:24,
-    fontWeight:'bold',
-    color: colors.primary,
-    textAlign:'center',
+    fontSize: 24,
+    fontWeight: "700",
+    textAlign: "center",
+    marginBottom: 10
   },
-  subtitle: {
-    fontSize:16,
-    color: colors.textSecondary,
-    textAlign:'center',
-    marginVertical:12,
+
+  description: {
+    fontSize: 16,
+    color: "#6B7280",
+    textAlign: "center",
+    lineHeight: 22
   },
+
+  pagination: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginBottom: 20
+  },
+
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: "#D1D5DB",
+    marginHorizontal: 5
+  },
+
+  activeDot: {
+    backgroundColor: "#2563EB",
+    width: 18
+  },
+
   button: {
-    marginTop:32,
-    backgroundColor: colors.primary,
-    paddingVertical:14,
-    paddingHorizontal:40,
-    borderRadius:8,
+    marginHorizontal: 30,
+    backgroundColor: "#2563EB",
+    paddingVertical: 15,
+    borderRadius: 10,
+    alignItems: "center"
   },
+
   buttonText: {
-    color: colors.textInverse,
-    fontSize:16,
-    fontWeight:'600',
-  },
+    color: "#FFF",
+    fontSize: 16,
+    fontWeight: "600"
+  }
 });

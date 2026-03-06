@@ -8,8 +8,10 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
+// src/screens/auth/LoginScreen.tsx
 
 export default function LoginScreen({ navigation, route }: Props) {
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -17,15 +19,21 @@ export default function LoginScreen({ navigation, route }: Props) {
   const { login } = useContext(AuthContext);
 
   const handleLogin = () => {
-    // TODO: Add auth logic
-    //if(role === 'landlord') navigation.replace('LandlordTabs');
-    //else navigation.replace('TenantTabs');
-    login({ role: role, name: email });
+
+    // Later this will come from backend
+    const userData = {
+      name: email,
+      role: role ?? 'tenant',
+    };
+
+    login(userData);
+
+    // 🚫 DO NOT NAVIGATE HERE
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login ({role})</Text>
+      <Text style={styles.title}>Welcome</Text>
 
       <TextInput
         placeholder="Email or Phone"
@@ -46,7 +54,7 @@ export default function LoginScreen({ navigation, route }: Props) {
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Register', { role })}>
+      <TouchableOpacity onPress={() => navigation.navigate('Onboarding')}>
         <Text style={styles.linkText}>Don't have an account? Register</Text>
       </TouchableOpacity>
 
