@@ -1,38 +1,45 @@
 // src/screens/auth/LoginScreen.tsx
-import React, { useState } from 'react';
+
+import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import colors from '../../constants/colors';
 import { AuthStackParamList } from '../../navigation/types';
-import { useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext, User } from '../../context/AuthContext';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
-// src/screens/auth/LoginScreen.tsx
 
-export default function LoginScreen({ navigation, route }: Props) {
+export default function LoginScreen({ navigation }: Props) {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const role = route.params?.role;
   const { login } = useContext(AuthContext);
 
   const handleLogin = () => {
 
-    // Later this will come from backend
-    const userData = {
-      name: email,
-      role: role ?? 'tenant',
+    if (!email || !password) {
+      alert('Please enter your email and password');
+      return;
+    }
+
+    // Mock backend response
+    const userData: User = {
+      name: 'John Doe',
+      email,
+      roles: ['landlord', 'tenant']
     };
 
+    // Save user in context
     login(userData);
 
-    // 🚫 DO NOT NAVIGATE HERE
+    // Go to role selection
+    navigation.replace('RoleSelect');
   };
 
   return (
     <View style={styles.container}>
+
       <Text style={styles.title}>Welcome</Text>
 
       <TextInput
@@ -54,13 +61,18 @@ export default function LoginScreen({ navigation, route }: Props) {
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Onboarding')}>
-        <Text style={styles.linkText}>Don't have an account? Register</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+        <Text style={styles.linkText}>
+          Don't have an account? Register
+        </Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate('ResetPassword')}>
-        <Text style={styles.linkText}>Forgot Password?</Text>
+        <Text style={styles.linkText}>
+          Forgot Password?
+        </Text>
       </TouchableOpacity>
+
     </View>
   );
 }

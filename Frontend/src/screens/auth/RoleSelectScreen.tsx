@@ -1,23 +1,37 @@
 // src/screens/auth/RoleSelectScreen.tsx
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import colors from '../../constants/colors';
-import { AuthStackParamList } from '../../navigation/types';
 
-type Props = NativeStackScreenProps<AuthStackParamList, 'RoleSelect'>;
+import React, { useContext } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { AuthContext } from "../../context/AuthContext";
+import colors from "../../constants/colors";
 
-export default function RoleSelectScreen({ navigation }: Props) {
+export default function RoleSelectScreen({ navigation }: any) {
+  const { switchRole } = useContext(AuthContext);
+
+  const selectRole = (role: "landlord" | "tenant") => {
+    switchRole?.(role);
+
+    navigation.replace(
+      role === "landlord" ? "LandlordTabs" : "TenantTabs"
+    );
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Who are you?</Text>
+      <Text style={styles.title}>Who are you</Text>
 
-      <TouchableOpacity style={styles.roleButton} onPress={() => navigation.replace('Login', { role: 'landlord' })}>
-        <Text style={styles.buttonText}>Landlord / Property Manager</Text>
+      <TouchableOpacity
+        style={styles.roleButton}
+        onPress={() => selectRole("landlord")}
+      >
+        <Text style={styles.roleText}>LANDLORD</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.roleButton} onPress={() => navigation.replace('Login', { role: 'tenant' })}>
-        <Text style={styles.buttonText}>Tenant</Text>
+      <TouchableOpacity
+        style={styles.roleButton}
+        onPress={() => selectRole("tenant")}
+      >
+        <Text style={styles.roleText}>TENANT</Text>
       </TouchableOpacity>
     </View>
   );
@@ -25,29 +39,29 @@ export default function RoleSelectScreen({ navigation }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center',
-    paddingHorizontal:24,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 24,
     backgroundColor: colors.backgroundLight,
   },
   title: {
-    fontSize:28,
-    fontWeight:'bold',
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 30,
     color: colors.primary,
-    marginBottom:32,
   },
   roleButton: {
-    width:'100%',
+    width: "80%",
+    paddingVertical: 16,
     backgroundColor: colors.primary,
-    paddingVertical:16,
-    borderRadius:8,
-    marginVertical:8,
-    alignItems:'center',
+    borderRadius: 8,
+    marginBottom: 16,
+    alignItems: "center",
   },
-  buttonText: {
+  roleText: {
     color: colors.textInverse,
-    fontSize:16,
-    fontWeight:'600',
+    fontSize: 18,
+    fontWeight: "600",
   },
 });

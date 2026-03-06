@@ -6,7 +6,7 @@ import colors from '../../../constants/colors';
 import { AuthContext } from '../../../context/AuthContext';
 
 export default function LandlordProfileScreen() {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout , switchRole } = useContext(AuthContext);
 
   return (
     <ScrollView style={styles.container}>
@@ -32,28 +32,52 @@ export default function LandlordProfileScreen() {
         </View>
         <View style={styles.infoCard}>
           <MaterialCommunityIcons name="briefcase-outline" size={24} color={colors.primary} />
-          <Text style={styles.infoText}>{user?.role || 'Landlord'}</Text>
+          <Text style={styles.infoText}>
+            {user?.activeRole ? user.activeRole.toUpperCase() : 'LANDLORD'}
+          </Text>
         </View>
       </View>
-
       {/* Quick Actions */}
-      <Text style={styles.sectionTitle}>Quick Actions</Text>
+      <Text style={styles.sectionTitle}>Account</Text>
+
       <View style={styles.actionsContainer}>
-        <TouchableOpacity style={[styles.actionButton, { backgroundColor: colors.primary }]}>
-          <MaterialCommunityIcons name="pencil-outline" size={24} color={colors.textInverse} />
-          <Text style={[styles.actionText, { color: colors.textInverse }]}>Edit Profile</Text>
+
+        <TouchableOpacity style={styles.actionRow}>
+          <View style={styles.actionLeft}>
+            <MaterialCommunityIcons name="account-edit-outline" size={22} color={colors.primary} />
+            <Text style={styles.actionLabel}>Edit Profile</Text>
+          </View>
+          <MaterialCommunityIcons name="chevron-right" size={22} color={colors.textSecondary} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.actionButton, { backgroundColor: colors.secondary }]}>
-          <MaterialCommunityIcons name="lock-outline" size={24} color={colors.textInverse} />
-          <Text style={[styles.actionText, { color: colors.textInverse }]}>Change Password</Text>
+        <TouchableOpacity style={styles.actionRow}>
+          <View style={styles.actionLeft}>
+            <MaterialCommunityIcons name="lock-outline" size={22} color={colors.primary} />
+            <Text style={styles.actionLabel}>Change Password</Text>
+          </View>
+          <MaterialCommunityIcons name="chevron-right" size={22} color={colors.textSecondary} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.actionButton, { backgroundColor: colors.error }]} onPress={logout}>
-          <MaterialCommunityIcons name="logout" size={24} color={colors.textInverse} />
-          <Text style={[styles.actionText, { color: colors.textInverse }]}>Logout</Text>
+        <TouchableOpacity
+          style={styles.actionRow}
+          onPress={() =>
+            switchRole(user?.activeRole === 'landlord' ? 'tenant' : 'landlord')
+          }
+        >
+          <View style={styles.actionLeft}>
+            <MaterialCommunityIcons name="swap-horizontal" size={22} color={colors.primary} />
+            <Text style={styles.actionLabel}>Switch Role</Text>
+          </View>
+          <MaterialCommunityIcons name="chevron-right" size={22} color={colors.textSecondary} />
         </TouchableOpacity>
+
       </View>
+
+      {/* Logout separated */}
+      <TouchableOpacity style={styles.logoutButton} onPress={logout}>
+        <MaterialCommunityIcons name="logout" size={20} color={colors.error} />
+        <Text style={styles.logoutText}>Logout</Text>
+      </TouchableOpacity>
 
     </ScrollView>
   );
@@ -119,26 +143,50 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
 
-  actionsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
+actionsContainer: {
+  backgroundColor: '#fff',
+  borderRadius: 12,
+  borderWidth: 1,
+  borderColor: colors.border,
+  marginBottom: 24,
+},
 
-  actionButton: {
-    padding: 15,
-    borderRadius: 12,
-    alignItems: 'center',
-    width: '30%',
-    shadowColor: colors.shadow,
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    elevation: 2,
-  },
+actionRow: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  paddingVertical: 18,
+  paddingHorizontal: 16,
+  borderBottomWidth: 1,
+  borderBottomColor: colors.border,
+},
 
-  actionText: {
-    fontSize: 12,
-    marginTop: 6,
-    fontWeight: '600',
-    textAlign: 'center',
-  },
+actionLeft: {
+  flexDirection: 'row',
+  alignItems: 'center',
+},
+
+actionLabel: {
+  marginLeft: 12,
+  fontSize: 16,
+  color: colors.textPrimary,
+  fontWeight: '500',
+},
+
+logoutButton: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+  paddingVertical: 16,
+  borderRadius: 10,
+  borderWidth: 1,
+  borderColor: colors.error,
+},
+
+logoutText: {
+  marginLeft: 8,
+  fontSize: 16,
+  color: colors.error,
+  fontWeight: '600',
+},
 });

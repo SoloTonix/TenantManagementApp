@@ -40,7 +40,7 @@ const OnboardingScreen = ({ navigation }: any) => {
     if (page < slides.length - 1) {
       pagerRef.current?.setPage(page + 1);
     } else {
-      navigation.replace("RoleSelect");
+      navigation.replace("Register");
     }
   };
 

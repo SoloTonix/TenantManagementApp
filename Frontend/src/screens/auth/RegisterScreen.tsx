@@ -1,33 +1,37 @@
-// src/// src/screens/auth/RegisterScreen.tsx
+// src/screens/auth/RegisterScreen.tsx
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import colors from '../../constants/colors';
 import { AuthStackParamList } from '../../navigation/types';
-import { useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
-
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Register'>;
 
-export default function RegisterScreen({ navigation, route }: Props) {
+export default function RegisterScreen({ navigation }: Props) {
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const [password,setPassword] = useState('');
-  const [confirmPassword,setConfirmPassword] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const role = route.params?.role;
-  const { login } = useContext(AuthContext);
   const handleRegister = () => {
-    // TODO: Add registration logic
-    //navigation.replace(role === 'landlord' ? 'LandlordTabs' : 'TenantTabs');
-    login({ role: role, name: fullName });
+    if (!fullName || !email || !password || !confirmPassword) {
+      alert('Please fill all fields');
+      return;
+    }
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+
+    // TODO: Call backend API to register user
+    // After registration, redirect to login
+    navigation.replace('Login');
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Register ({role})</Text>
+      <Text style={styles.title}>Create Account</Text>
 
       <TextInput
         placeholder="Full Name"
@@ -70,7 +74,7 @@ export default function RegisterScreen({ navigation, route }: Props) {
         <Text style={styles.buttonText}>Create Account</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Login', { role })}>
+      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
         <Text style={styles.linkText}>Already have an account? Login</Text>
       </TouchableOpacity>
     </ScrollView>
@@ -78,21 +82,21 @@ export default function RegisterScreen({ navigation, route }: Props) {
 }
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flexGrow:1,
     paddingHorizontal:24,
     justifyContent:'center',
     backgroundColor: colors.backgroundLight,
     paddingVertical:32,
   },
-  title:{
+  title: {
     fontSize:28,
     fontWeight:'bold',
     color: colors.primary,
-    marginBottom:32,
+    marginBottom:24,
     textAlign:'center',
   },
-  input:{
+  input: {
     borderWidth:1,
     borderColor: colors.border,
     borderRadius:8,
@@ -100,19 +104,19 @@ const styles = StyleSheet.create({
     marginBottom:16,
     backgroundColor:'#fff',
   },
-  button:{
+  button: {
     backgroundColor: colors.primary,
     paddingVertical:16,
     borderRadius:8,
     alignItems:'center',
     marginBottom:16,
   },
-  buttonText:{
+  buttonText: {
     color: colors.textInverse,
     fontSize:16,
     fontWeight:'600',
   },
-  linkText:{
+  linkText: {
     color: colors.primary,
     fontSize:14,
     textAlign:'center',
