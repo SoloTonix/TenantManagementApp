@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const TenantHomeScreen: React.FC = () => (
+const DashboardScreen: React.FC = () => (
   <View>
     <Text>TenantHomeScreen</Text>
   </View>
 );
 
-export default TenantHomeScreen;
+export default DashboardScreen;

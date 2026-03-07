@@ -18,7 +18,7 @@ export default function AppLaunchScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>TenantFlow</Text>
+      <Text style={styles.title}>RentFlow</Text>
       <ActivityIndicator
         size="small"
         color={colors.primary}

@@ -1,0 +1,357 @@
+Great direction. If **landlords are one side of the platform**, the **tenant side must also have clear goals and value**, otherwise tenants won’t engage with the app.
+
+For a scalable SaaS like your **RentFlow / Tenant Manager**, the tenant experience should feel similar to modern financial apps like Opay or PalmPay — simple, clear, and centered around **payments, records, and communication**. 📱
+
+Below is a **product-level breakdown** of the **tenant user goals, objectives, and functionalities**.
+
+---
+
+# 1️⃣ Core Goal of the Tenant App
+
+The tenant side of the platform should solve one main problem:
+
+> **Make rent management easy, transparent, and organized for tenants.**
+
+Many tenants currently manage rent with:
+
+* Bank transfers
+* WhatsApp messages
+* Paper receipts
+* Verbal agreements
+
+Your app centralizes all that.
+
+---
+
+# 2️⃣ Primary Objectives for Tenant Users
+
+### 1. Rent Transparency
+
+Tenants should always know:
+
+* Their **rent amount**
+* **Next due date**
+* **Payment history**
+* **Outstanding balance**
+
+This reduces disputes between tenant and landlord.
+
+Example:
+
+```
+Rent Amount: ₦450,000
+Next Due Date: Sept 1
+Outstanding Balance: ₦0
+```
+
+---
+
+### 2. Easy Rent Payment
+
+Tenants should be able to:
+
+* Pay rent directly inside the app
+* See confirmation instantly
+* Receive digital receipts
+
+Payment gateways you could integrate later:
+
+* Paystack
+* Flutterwave
+
+---
+
+### 3. Payment Records
+
+Tenants should never lose proof of payment.
+
+The app should store:
+
+```
+All payments
+Payment date
+Amount
+Receipt
+Payment method
+```
+
+This is extremely valuable during disputes.
+
+---
+
+### 4. Communication with Landlord
+
+The app should simplify landlord–tenant communication.
+
+Tenants can:
+
+* Notify landlord of payment
+* Report issues
+* Ask questions
+
+Example:
+
+```
+Maintenance Request:
+Kitchen sink leaking
+```
+
+---
+
+### 5. Lease Information
+
+Tenants should see:
+
+```
+Property name
+Unit number
+Rent amount
+Lease start date
+Lease expiration date
+```
+
+This prevents confusion.
+
+---
+
+# 3️⃣ Core Tenant Functionalities
+
+## 1. Tenant Dashboard
+
+The first screen tenants see.
+
+Key information:
+
+```
+Next Rent Due
+Outstanding Balance
+Recent Payments
+Lease Status
+```
+
+Example:
+
+```
+Next Rent Due: Aug 1
+Amount: ₦350,000
+Status: Pending
+```
+
+---
+
+## 2. Pay Rent
+
+A dedicated payment screen.
+
+Features:
+
+* Pay rent
+* Choose payment method
+* Confirm payment
+* Generate receipt
+
+Later upgrades:
+
+* installment payments
+* automatic payments
+
+---
+
+## 3. Payment History
+
+Shows all payments.
+
+Example list:
+
+```
+June Rent - ₦350,000 - Paid
+May Rent - ₦350,000 - Paid
+April Rent - ₦350,000 - Paid
+```
+
+Tenant can tap to view receipt.
+
+---
+
+## 4. Maintenance Requests
+
+Tenants should be able to report property issues.
+
+Example categories:
+
+```
+Electrical
+Plumbing
+Appliances
+General repair
+```
+
+Workflow:
+
+```
+Tenant reports issue
+↓
+Landlord receives notification
+↓
+Issue tracked until resolved
+```
+
+---
+
+## 5. Notifications & Reminders
+
+Tenants receive alerts for:
+
+```
+Rent due soon
+Rent overdue
+Maintenance updates
+Lease renewal reminders
+```
+
+Example:
+
+```
+Your rent is due in 3 days.
+Amount: ₦350,000
+```
+
+---
+
+## 6. Digital Receipts
+
+After each payment:
+
+Tenant gets:
+
+```
+Receipt ID
+Date
+Amount
+Property
+Landlord name
+```
+
+This builds **trust in the system**.
+
+---
+
+# 4️⃣ Tenant App Screen Structure
+
+Your tenant app could look like this:
+
+```
+Tenant Dashboard
+   │
+   ├── Pay Rent
+   ├── Payment History
+   ├── Lease Details
+   ├── Maintenance Requests
+   └── Notifications
+```
+
+This keeps the tenant side **simple and focused**.
+
+---
+
+# 5️⃣ Tenant User Journey
+
+Typical flow:
+
+```
+Tenant invited by landlord
+↓
+Tenant installs app
+↓
+Tenant logs in
+↓
+Sees rent details
+↓
+Receives reminder
+↓
+Pays rent
+↓
+Gets receipt
+```
+
+The experience should feel **smooth and reliable**.
+
+---
+
+# 6️⃣ Why the Tenant Side is Critical
+
+Many property apps fail because they only focus on landlords.
+
+But tenant engagement improves:
+
+* payment compliance
+* transparency
+* communication
+* record keeping
+
+It also makes your SaaS **much more valuable**.
+
+---
+
+# 7️⃣ Long-Term Tenant Features (Future)
+
+When your platform grows, you could add:
+
+### Automated Rent Payments
+
+Tenants enable **auto-pay** monthly.
+
+---
+
+### Expense Sharing
+
+For shared apartments:
+
+```
+Tenant A
+Tenant B
+Tenant C
+```
+
+Split rent automatically.
+
+---
+
+### Credit Scoring
+
+Track tenant payment history to build **tenant reputation**.
+
+---
+
+### Marketplace
+
+Tenants can find new rentals inside the platform.
+
+---
+
+# 8️⃣ Product Philosophy
+
+Your app should make tenants feel like they’re using a **modern finance tool**, not just a landlord utility.
+
+The tenant experience should be:
+
+* simple
+* trustworthy
+* transparent
+* payment-focused
+
+Just like fintech apps such as Opay.
+
+---
+
+✅ Next, I can also show you something **extremely important for the product design**:
+
+**The Complete Feature Map for Both Users (Landlord + Tenant)**
+
+This will show:
+
+* which features belong to landlord
+* which belong to tenant
+* which are shared
+
+It will help you **avoid building unnecessary features and keep the app focused.**
