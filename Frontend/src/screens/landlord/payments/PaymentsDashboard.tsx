@@ -85,13 +85,13 @@ export default function PaymentsDashboard({ navigation }: any) {
   const renderHeader = () => (
     <>
       {/* Title */}
-      <Text style={styles.title}>Payments Dashboard</Text>
+      <Text style={styles.title}>Payments</Text>
 
       {/* 1. Summary Cards */}
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.summaryScroll}>
         <View style={[styles.summaryCard, { backgroundColor: colors.primary }]}>
           <Text style={styles.summaryAmount}>₦1.5M</Text>
-          <Text style={styles.summaryLabel}>Total Collected</Text>
+          <Text style={styles.summaryLabel}>Total Collected</Text>    
         </View>
         <View style={[styles.summaryCard, { backgroundColor: colors.warning }]}>
           <Text style={styles.summaryAmount}>₦350K</Text>
@@ -163,7 +163,7 @@ export default function PaymentsDashboard({ navigation }: any) {
 
 const styles = StyleSheet.create({
   container:{ flex:1, backgroundColor: colors.backgroundLight },
-  title:{ fontSize:24, fontWeight:'bold', color: colors.textPrimary, marginBottom: 20 },
+  title:{ fontSize:24, fontWeight:'bold', color: colors.textPrimary, marginBottom: 35, marginVertical: 40 },
   summaryScroll:{ marginBottom: 20 },
   summaryCard:{
     width:140,
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
   },
   summaryAmount:{ fontSize:16, fontWeight:'bold', color: colors.textInverse, marginBottom:4 },
   summaryLabel:{ fontSize:12, color: colors.textInverse, textAlign:'center' },
-  sectionTitle:{ fontSize:18, fontWeight:'600', marginBottom:12, color: colors.textPrimary },
+  sectionTitle:{ fontSize:18, fontWeight:'600', marginBottom:12, marginVertical: 20, color: colors.textPrimary },
   quickActionButton:{
     width:120,
     padding:16,

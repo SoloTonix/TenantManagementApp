@@ -14,7 +14,7 @@ const properties = [
 export default function PropertiesListScreen({ navigation }: any) {
   const [search, setSearch] = useState("");
   const renderProperty = ({ item }: any) => (
-    <TouchableOpacity 
+    <TouchableOpacity   
       style={styles.card} 
       onPress={() => navigation.navigate('PropertyDetail', { propertyId: item.id })}
     >

@@ -1,87 +1,177 @@
-// src/screens/landlord/dashboard/DashboardScreen.tsx
-import React, { useContext } from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import colors from "../../../constants/colors";
-import { AuthContext } from "../../../context/AuthContext";
+import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Dimensions
+} from 'react-native';
 
-export default function DashboardScreen() {
-  const { user } = useContext(AuthContext);
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { LineChart } from 'react-native-chart-kit';
+import colors from '../../../constants/colors';
+
+const screenWidth = Dimensions.get('window').width;
+
+const revenueData = {
+  labels: ['Jan','Feb','Mar','Apr','May','Jun'],
+  datasets: [
+    {
+      data: [1200000,1500000,1100000,1800000,1600000,2000000]
+    }
+  ]
+};
+
+const chartConfig = {
+  backgroundGradientFrom: '#ffffff',
+  backgroundGradientTo: '#ffffff',
+  color: (opacity = 1) => `rgba(0,123,255,${opacity})`,
+  labelColor: (opacity = 1) => `rgba(0,0,0,${opacity})`,
+  strokeWidth: 2,
+  decimalPlaces: 0
+};
+
+export default function LandlordDashboard() {
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
 
-      {/* Header */}
+      {/* HEADER */}
       <View style={styles.header}>
-        <View style={styles.headerTop}>
+        <Text style={styles.greeting}>Welcome back</Text>
+        <Text style={styles.name}>Landlord</Text>
+      </View>
+
+
+      {/* PORTFOLIO BALANCE CARD */}
+      <View style={styles.balanceCard}>
+        <Text style={styles.balanceLabel}>Portfolio Revenue</Text>
+        <Text style={styles.balance}>₦4,600,000</Text>
+
+        <View style={styles.balanceRow}>
           <View>
-            <Text style={styles.greeting}>Hello,</Text>
-            <Text style={styles.name}>{user?.name}</Text>
+            <Text style={styles.balanceSmallLabel}>Collected</Text>
+            <Text style={styles.balanceSmall}>₦3.8M</Text>
           </View>
-          <TouchableOpacity style={styles.notification}>
-            <MaterialCommunityIcons name="bell" size={30} color={colors.primary} />
-          </TouchableOpacity>
+
+          <View>
+            <Text style={styles.balanceSmallLabel}>Outstanding</Text>
+            <Text style={styles.balanceSmall}>₦800K</Text>
+          </View>
         </View>
       </View>
 
-      {/* Summary Cards */}
-      <View style={styles.cardsContainer}>
 
-        <View style={styles.card}>
-          <MaterialCommunityIcons name="office-building-outline" size={28} color={colors.textInverse} />
-          <Text style={styles.cardNumber}>12</Text>
-          <Text style={styles.cardLabel}>Properties</Text>
+      {/* QUICK STATS */}
+      <Text style={styles.sectionTitle}>Portfolio</Text>
+
+      <View style={styles.statsRow}>
+
+        <View style={styles.statCard}>
+          <MaterialCommunityIcons
+            name="office-building"
+            size={24}
+            color={colors.primary}
+          />
+          <Text style={styles.statNumber}>12</Text>
+          <Text style={styles.statLabel}>Properties</Text>
         </View>
 
-        <View style={styles.card}>
-          <MaterialCommunityIcons name="account-group-outline" size={28} color={colors.textInverse} />
-          <Text style={styles.cardNumber}>36</Text>
-          <Text style={styles.cardLabel}>Tenants</Text>
+        <View style={styles.statCard}>
+          <MaterialCommunityIcons
+            name="account-group"
+            size={24}
+            color={colors.primary}
+          />
+          <Text style={styles.statNumber}>34</Text>
+          <Text style={styles.statLabel}>Tenants</Text>
         </View>
 
-        <View style={styles.card}>
-          <MaterialCommunityIcons name="credit-card-outline" size={28} color={colors.textInverse} />
-          <Text style={styles.cardNumber}>₦1.2M</Text>
-          <Text style={styles.cardLabel}>Payments</Text>
-        </View>
-
-        <View style={[styles.card, { borderWidth: 2, borderColor: colors.primary , backgroundColor: colors.backgroundLight}]}>
-          <MaterialCommunityIcons name="clock-outline" size={28} color={colors.primary} />
-          <Text style={[styles.cardNumber, { color: colors.primary }]}>4</Text>
-          <Text style={[styles.cardLabel, { color: colors.primary }]}>Pending</Text>
+        <View style={styles.statCard}>
+          <MaterialCommunityIcons
+            name="home-percent"
+            size={24}
+            color={colors.primary}
+          />
+          <Text style={styles.statNumber}>87%</Text>
+          <Text style={styles.statLabel}>Occupancy</Text>
         </View>
 
       </View>
 
-      {/* Quick Actions */}
+
+      {/* REVENUE CHART */}
+      <Text style={styles.sectionTitle}>Revenue Trend</Text>
+
+      <LineChart
+        data={revenueData}
+        width={screenWidth - 40}
+        height={200}
+        chartConfig={chartConfig}
+        bezier
+        style={styles.chart}
+      />
+
+
+      {/* QUICK ACTIONS */}
       <Text style={styles.sectionTitle}>Quick Actions</Text>
-      <View style={styles.actionsContainer}>
-        <TouchableOpacity style={[styles.actionButton, { backgroundColor: colors.backgroundLight, borderWidth: 1, borderColor: colors.primary }]}>
-          <MaterialCommunityIcons name="plus-circle-outline" size={24} color={colors.primary} />
-          <Text style={[styles.actionText, { color: colors.primary }]}>Add Property</Text>
+
+      <View style={styles.actionsRow}>
+
+        <TouchableOpacity style={styles.actionCard}>
+          <MaterialCommunityIcons
+            name="cash-plus"
+            size={24}
+            color={colors.primary}
+          />
+          <Text style={styles.actionText}>Record Payment</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.actionButton, { backgroundColor: colors.textSecondary }]}>
-          <MaterialCommunityIcons name="account-plus-outline" size={24} color={colors.textInverse} />
-          <Text style={[styles.actionText, { color: colors.textInverse }]}>Add Tenant</Text>
+        <TouchableOpacity style={styles.actionCard}>
+          <MaterialCommunityIcons
+            name="account-plus"
+            size={24}
+            color={colors.primary}
+          />
+          <Text style={styles.actionText}>Add Tenant</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.actionButton, { backgroundColor: colors.accent }]}>
-          <MaterialCommunityIcons name="cash-plus" size={24} color={colors.textInverse} />
-          <Text style={[styles.actionText, { color: colors.textInverse }]}>Record Payment</Text>
+        <TouchableOpacity style={styles.actionCard}>
+          <MaterialCommunityIcons
+            name="home-plus"
+            size={24}
+            color={colors.primary}
+          />
+          <Text style={styles.actionText}>Add Property</Text>
         </TouchableOpacity>
+
       </View>
 
-      {/* Recent Activity */}
-      <Text style={styles.sectionTitle}>Recent Activity</Text>
-      <View style={styles.activityCard}>
-        <Text style={styles.activityText}>John Doe paid rent for Apartment 3</Text>
+
+      {/* ALERTS */}
+      <Text style={styles.sectionTitle}>Alerts</Text>
+
+      <View style={styles.alertCard}>
+        <MaterialCommunityIcons
+          name="alert-circle-outline"
+          size={22}
+          color={colors.error}
+        />
+        <Text style={styles.alertText}>
+          3 tenants have overdue rent payments
+        </Text>
       </View>
-      <View style={styles.activityCard}>
-        <Text style={styles.activityText}>New tenant added to Block B</Text>
-      </View>
-      <View style={styles.activityCard}>
-        <Text style={styles.activityText}>Maintenance request submitted</Text>
+
+      <View style={styles.alertCard}>
+        <MaterialCommunityIcons
+          name="home-alert-outline"
+          size={22}
+          color={colors.warning}
+        />
+        <Text style={styles.alertText}>
+          2 units are currently vacant
+        </Text>
       </View>
 
     </ScrollView>
@@ -90,128 +180,142 @@ export default function DashboardScreen() {
 
 const styles = StyleSheet.create({
 
-  container: {
-    flex: 1,
-    backgroundColor: colors.backgroundLight,
-    padding: 20,
+  container:{
+    flex:1,
+    backgroundColor:colors.backgroundLight,
+    padding:20
   },
 
-  // Full-width, professional header
-  header: {
-    backgroundColor: colors.backgroundLight,
-    paddingVertical: 30,
-    paddingHorizontal: 20,
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0,
-    marginBottom: 40,
-    shadowColor: colors.shadow,
-    shadowOpacity: 0.15,
-    shadowRadius: 10,
-    elevation: 6,
+  header:{
+    marginBottom:20
   },
 
-  headerTop: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  greeting:{
+    fontSize:16,
+    color:colors.textSecondary
   },
 
-  greeting: {
-    fontSize: 16,
-    color: colors.secondary,
-    fontWeight: '400',
+  name:{
+    fontSize:24,
+    fontWeight:'bold',
+    color:colors.textPrimary
   },
 
-  name: {
-    fontSize: 28,
-    fontWeight: "bold",
-    color: colors.secondary,
-    marginTop: 4,
+
+  balanceCard:{
+    backgroundColor:colors.primary,
+    borderRadius:16,
+    padding:20,
+    marginBottom:30
   },
 
-  notification: {
-    backgroundColor: colors.backgroundLight, // slightly lighter blue
-    borderColor: colors.primary,
-    borderWidth: 1,
-    borderRadius: 25,
-    padding: 2,
+  balanceLabel:{
+    color:'#ffffffaa',
+    marginBottom:8
   },
 
-  cardsContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    marginTop: -30, // overlap cards on header
-    marginBottom: 25,
+  balance:{
+    fontSize:28,
+    fontWeight:'bold',
+    color:'#fff',
+    marginBottom:16
   },
 
-  card: {
-    width: "48%",
-    backgroundColor: colors.primary,
-    padding: 18,
-    borderRadius: 0,
-    marginBottom: 15,
-    borderWidth: 1,
-    borderColor: colors.border,
-    shadowColor: colors.shadow,
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    elevation: 2,
+  balanceRow:{
+    flexDirection:'row',
+    justifyContent:'space-between'
   },
 
-  cardNumber: {
-    fontSize: 22,
-    fontWeight: "bold",
-    marginTop: 8,
-    color: colors.textInverse,
+  balanceSmallLabel:{
+    color:'#ffffffaa',
+    fontSize:12
   },
 
-  cardLabel: {
-    fontSize: 13,
-    color: colors.textInverse,
+  balanceSmall:{
+    color:'#fff',
+    fontWeight:'600'
   },
 
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: "600",
-    marginBottom: 12,
-    color: colors.textPrimary,
+
+  sectionTitle:{
+    fontSize:18,
+    fontWeight:'600',
+    marginBottom:12,
+    color:colors.textPrimary
   },
 
-  actionsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 25,
+
+  statsRow:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    marginBottom:25
   },
 
-  actionButton: {
-    padding: 15,
-    borderRadius: 12,
-    alignItems: "center",
-    width: "30%",
-    shadowColor: colors.shadow,
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    elevation: 2,
+  statCard:{
+    backgroundColor:'#fff',
+    width:'30%',
+    borderRadius:12,
+    padding:16,
+    alignItems:'center',
+    borderWidth:1,
+    borderColor:colors.border
   },
 
-  actionText: {
-    fontSize: 12,
-    marginTop: 6,
-    fontWeight: "600",
+  statNumber:{
+    fontSize:18,
+    fontWeight:'bold',
+    marginTop:6
   },
 
-  activityCard: {
-    backgroundColor: colors.backgroundLight,
-    padding: 16,
-    borderRadius: 10,
-    marginBottom: 10,
-    borderWidth: 1,
-    borderColor: colors.border,
+  statLabel:{
+    fontSize:12,
+    color:colors.textSecondary
   },
 
-  activityText: {
-    color: colors.textSecondary,
+
+  chart:{
+    borderRadius:12,
+    marginBottom:25
   },
+
+
+  actionsRow:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    marginBottom:25
+  },
+
+  actionCard:{
+    backgroundColor:'#fff',
+    width:'30%',
+    padding:16,
+    borderRadius:12,
+    alignItems:'center',
+    borderWidth:1,
+    borderColor:colors.border
+  },
+
+  actionText:{
+    marginTop:6,
+    fontSize:12,
+    fontWeight:'600'
+  },
+
+
+  alertCard:{
+    flexDirection:'row',
+    alignItems:'center',
+    backgroundColor:'#fff',
+    padding:16,
+    borderRadius:12,
+    marginBottom:12,
+    borderWidth:1,
+    borderColor:colors.border
+  },
+
+  alertText:{
+    marginLeft:10,
+    color:colors.textPrimary
+  }
 
 });
